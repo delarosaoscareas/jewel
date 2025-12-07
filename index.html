@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Jewel Store</title>
+  <title>Jewel Bloom</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
-    /* ---------- ESTILOS GENERALES ---------- */
+    /* ---------- GENERAL STYLES ---------- */
     :root {
-      --bg: #0f172a;
-      --card-bg: #0b1220;
-      --accent: #eab308;
-      --accent-soft: #facc15;
-      --heart: #fb7185;
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --border-soft: rgba(148,163,184,0.3);
+      --bg: #fdf2f8;
+      --card-bg: #ffffff;
+      --accent: #ec4899;
+      --accent-soft: #f9a8d4;
+      --heart: #ec4899;
+      --text-main: #1f2933;
+      --text-muted: #6b7280;
+      --border-soft: rgba(236, 72, 153, 0.18);
       --radius-lg: 18px;
       --radius-md: 12px;
-      --shadow-soft: 0 18px 45px rgba(15,23,42,0.85);
+      --shadow-soft: 0 16px 40px rgba(148, 27, 126, 0.16);
     }
 
     * {
@@ -30,7 +30,10 @@
 
     body {
       min-height: 100vh;
-      background: radial-gradient(circle at top, #1f2937 0, #020617 55%, #000 100%);
+      background:
+        radial-gradient(circle at 0% 0%, #ffe4e6 0, transparent 60%),
+        radial-gradient(circle at 100% 0%, #e0f2fe 0, transparent 60%),
+        linear-gradient(to bottom, #fdf2f8, #f9fafb);
       color: var(--text-main);
       display: flex;
       flex-direction: column;
@@ -38,10 +41,10 @@
 
     /* ---------- HEADER ---------- */
     header {
-      padding: 16px 18px;
-      border-bottom: 1px solid rgba(148,163,184,0.3);
-      backdrop-filter: blur(16px);
-      background: linear-gradient(to right, rgba(15,23,42,0.92), rgba(15,23,42,0.85));
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(244, 114, 182, 0.28);
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to right, rgba(253,242,248,0.96), rgba(239,246,255,0.96));
       position: sticky;
       top: 0;
       z-index: 20;
@@ -63,28 +66,28 @@
     }
 
     .brand-logo {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       border-radius: 999px;
-      background: conic-gradient(from 210deg, #facc15, #fb7185, #38bdf8, #facc15);
+      background: conic-gradient(from 210deg, #f472b6, #facc15, #a855f7, #f472b6);
       padding: 2px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 18px rgba(248,250,252,0.4);
+      box-shadow: 0 0 18px rgba(251,113,133,0.45);
     }
 
     .brand-logo-inner {
       width: 100%;
       height: 100%;
       border-radius: inherit;
-      background: radial-gradient(circle at 30% 20%, #fef9c3, #f97316 45%, #4b5563 80%);
+      background: radial-gradient(circle at 30% 20%, #fdf2f8, #f97316 40%, #f472b6 85%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-weight: 700;
-      color: #0f172a;
+      color: #881337;
     }
 
     .brand-text-main {
@@ -104,11 +107,12 @@
       font-size: 0.7rem;
       padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.5);
+      border: 1px solid rgba(244,114,182,0.55);
       color: var(--text-muted);
+      background: rgba(255,255,255,0.9);
     }
 
-    /* ---------- LAYOUT PRINCIPAL ---------- */
+    /* ---------- MAIN LAYOUT ---------- */
     main {
       flex: 1;
       padding: 18px;
@@ -122,7 +126,6 @@
       gap: 18px;
     }
 
-    /* ---------- CABECERA DE SECCIÓN ---------- */
     .section-header {
       display: flex;
       flex-direction: column;
@@ -130,7 +133,7 @@
     }
 
     .section-title {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 600;
     }
 
@@ -139,27 +142,25 @@
       color: var(--text-muted);
     }
 
-    /* ---------- GRID Y SIDEBAR ---------- */
     .content {
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
 
-    /* products + carrito */
+    /* ---------- PRODUCTS GRID ---------- */
     .products {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
 
-    /* --------- TARJETA PRODUCTO --------- */
     .product-card {
-      background: radial-gradient(circle at top, rgba(248,250,252,0.06), rgba(15,23,42,0.9));
+      background: var(--card-bg);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-soft);
       padding: 10px;
-      box-shadow: 0 14px 30px rgba(15,23,42,0.9);
+      box-shadow: var(--shadow-soft);
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -170,7 +171,7 @@
     .product-glow {
       position: absolute;
       inset: -60%;
-      background: radial-gradient(circle at 10% 0, rgba(248,250,252,0.16), transparent 70%);
+      background: radial-gradient(circle at 10% 0, rgba(244,114,182,0.14), transparent 70%);
       opacity: 0;
       transition: opacity 0.3s ease;
       pointer-events: none;
@@ -184,11 +185,11 @@
       border-radius: var(--radius-md);
       height: 120px;
       background:
-        radial-gradient(circle at 15% 10%, rgba(250,250,250,0.45), transparent 55%),
-        radial-gradient(circle at 80% 0, rgba(251,191,36,0.5), transparent 60%),
-        radial-gradient(circle at 30% 90%, rgba(248,113,113,0.55), transparent 60%),
-        radial-gradient(circle at 120% 90%, rgba(56,189,248,0.6), transparent 60%),
-        #020617;
+        radial-gradient(circle at 15% 10%, rgba(255,255,255,0.7), transparent 55%),
+        radial-gradient(circle at 80% 0, rgba(248,187,208,0.9), transparent 60%),
+        radial-gradient(circle at 30% 90%, rgba(186,230,253,0.85), transparent 60%),
+        radial-gradient(circle at 120% 90%, rgba(221,214,254,0.9), transparent 60%),
+        #f9a8d4;
       position: relative;
       overflow: hidden;
     }
@@ -197,22 +198,22 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 0, rgba(15,23,42,0.2), transparent 55%);
-      opacity: 0.4;
+      background: radial-gradient(circle at 50% 0, rgba(255,255,255,0.35), transparent 60%);
+      opacity: 0.6;
     }
 
     .product-chip {
       position: absolute;
       top: 8px;
       left: 8px;
-      padding: 3px 8px;
+      padding: 3px 9px;
       border-radius: 999px;
-      background: rgba(15,23,42,0.85);
-      color: var(--accent-soft);
+      background: rgba(255,255,255,0.9);
+      color: #be185d;
       font-size: 0.65rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      border: 1px solid rgba(250,204,21,0.4);
+      border: 1px solid rgba(236,72,153,0.35);
     }
 
     .product-body {
@@ -247,7 +248,7 @@
     .price-main {
       font-size: 0.9rem;
       font-weight: 600;
-      color: #fef9c3;
+      color: #9d174d;
     }
 
     .price-sub {
@@ -255,10 +256,10 @@
       color: var(--text-muted);
     }
 
-    /* ---------- BOTÓN HEART ---------- */
+    /* ---------- HEART BUTTON ---------- */
     .heart-btn {
       border: none;
-      background: radial-gradient(circle at 30% 20%, rgba(248,250,252,0.15), rgba(15,23,42,1));
+      background: radial-gradient(circle at 30% 20%, rgba(248,250,252,0.9), #fee2e2);
       border-radius: 999px;
       padding: 6px 11px;
       display: flex;
@@ -266,7 +267,7 @@
       gap: 6px;
       cursor: pointer;
       color: var(--text-muted);
-      border: 1px solid rgba(148,163,184,0.4);
+      border: 1px solid rgba(236,72,153,0.3);
       box-shadow: 0 0 0 rgba(248,113,113,0);
       transition:
         transform 0.16s ease,
@@ -278,8 +279,8 @@
 
     .heart-btn:hover {
       transform: translateY(-1px) scale(1.02);
-      box-shadow: 0 10px 26px rgba(248,113,113,0.25);
-      border-color: rgba(248,113,113,0.7);
+      box-shadow: 0 10px 26px rgba(244,114,182,0.35);
+      border-color: rgba(236,72,153,0.7);
     }
 
     .heart-icon {
@@ -304,7 +305,6 @@
       color: var(--heart);
     }
 
-    /* animación de “pop” al dar heart */
     @keyframes heart-pop {
       0%   { transform: scale(0.8); }
       50%  { transform: scale(1.25); }
@@ -315,17 +315,16 @@
       animation: heart-pop 0.26s ease-out;
     }
 
-    /* cuando está activado */
     .heart-btn.active {
       color: var(--heart);
-      background: radial-gradient(circle at 10% 0, rgba(248,250,252,0.16), rgba(15,23,42,1));
-      box-shadow: 0 10px 26px rgba(248,113,113,0.35);
-      border-color: rgba(248,113,113,0.9);
+      background: radial-gradient(circle at 10% 0, #ffe4e6, #fecaca);
+      box-shadow: 0 10px 26px rgba(244,114,182,0.45);
+      border-color: rgba(236,72,153,0.95);
     }
 
-    /* ---------- SIDEBAR / CARRITO ---------- */
+    /* ---------- SIDEBAR / SUMMARY ---------- */
     .sidebar {
-      background: radial-gradient(circle at top, rgba(248,250,252,0.06), rgba(15,23,42,0.95));
+      background: rgba(255,255,255,0.98);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-soft);
       padding: 12px 12px 14px;
@@ -353,8 +352,9 @@
       padding: 3px 9px;
       border-radius: 999px;
       font-size: 0.7rem;
-      border: 1px solid rgba(148,163,184,0.6);
+      border: 1px solid rgba(236,72,153,0.45);
       color: var(--text-muted);
+      background: #fdf2f8;
     }
 
     .favorites-list {
@@ -375,8 +375,8 @@
       font-size: 0.8rem;
       padding: 6px 8px;
       border-radius: var(--radius-md);
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(51,65,85,0.9);
+      background: #fdf2f8;
+      border: 1px solid rgba(248,187,208,0.9);
     }
 
     .favorites-name {
@@ -388,7 +388,7 @@
 
     .favorites-price {
       font-weight: 600;
-      color: var(--accent-soft);
+      color: #be185d;
       font-size: 0.8rem;
     }
 
@@ -400,7 +400,7 @@
     .total-bar {
       margin-top: 4px;
       padding-top: 8px;
-      border-top: 1px dashed rgba(148,163,184,0.6);
+      border-top: 1px dashed rgba(244,114,182,0.6);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -417,12 +417,10 @@
     .total-amount {
       font-size: 1rem;
       font-weight: 600;
-      color: #fef9c3;
+      color: #9d174d;
     }
 
     /* ---------- RESPONSIVE ---------- */
-
-    /* Móvil base: todo en una columna, 2 productos por fila */
     @media (max-width: 640px) {
       header {
         padding-inline: 14px;
@@ -445,7 +443,6 @@
       }
     }
 
-    /* Tablet / escritorio: productos + sidebar al lado */
     @media (min-width: 840px) {
       .content {
         display: grid;
@@ -456,10 +453,9 @@
 
       .sidebar {
         position: sticky;
-        top: 82px;
+        top: 80px;
       }
     }
-
   </style>
 </head>
 <body>
@@ -472,11 +468,11 @@
           <div class="brand-logo-inner">J</div>
         </div>
         <div>
-          <div class="brand-text-main">Jewel Studio</div>
-          <div class="brand-text-sub">Colección especial</div>
+          <div class="brand-text-main">Jewel Bloom</div>
+          <div class="brand-text-sub">Handmade Jewelry</div>
         </div>
       </div>
-      <span class="badge-preview">Demo para proyecto escolar</span>
+      <span class="badge-preview">School project demo</span>
     </div>
   </header>
 
@@ -484,33 +480,33 @@
   <main>
     <div class="layout">
       <div class="section-header">
-        <h1 class="section-title">Joyas seleccionadas</h1>
+        <h1 class="section-title">Curated pieces</h1>
         <p class="section-subtitle">
-          Toca el corazón de cada pieza para marcar tus favoritas. El resumen se actualiza automáticamente.
+          Tap the heart on each piece to mark your favorites. The summary updates automatically.
         </p>
       </div>
 
       <div class="content">
-        <!-- LISTA DE PRODUCTOS -->
+        <!-- PRODUCTS LIST -->
         <section class="products" id="productsGrid">
-          <!-- Se generan con JS -->
+          <!-- Generated with JS -->
         </section>
 
-        <!-- SIDEBAR / CARRITO -->
+        <!-- SIDEBAR / SUMMARY -->
         <aside class="sidebar">
           <div class="sidebar-header">
-            <span class="sidebar-title">Mis Hearts</span>
-            <span class="sidebar-pill" id="countBadge">0 seleccionados</span>
+            <span class="sidebar-title">My hearts</span>
+            <span class="sidebar-pill" id="countBadge">0 items selected</span>
           </div>
 
           <p id="emptyMessage" class="empty-msg">
-            Todavía no has marcado ninguna joya. Toca un corazón para comenzar.
+            You haven't selected any jewelry yet. Tap a heart to start your list.
           </p>
 
           <ul class="favorites-list" id="favoritesList"></ul>
 
           <div class="total-bar">
-            <span class="total-label">Total a pagar</span>
+            <span class="total-label">Total</span>
             <span class="total-amount" id="totalAmount">Q 0.00</span>
           </div>
         </aside>
@@ -519,49 +515,49 @@
   </main>
 
   <script>
-    // ---------- DATA DE PRODUCTOS ----------
+    // ---------- PRODUCTS DATA ----------
     const productsData = [
       {
         id: "1",
-        name: "Collar Aurora",
+        name: "Aurora Necklace",
         price: 120,
-        tag: "Edición limitada",
-        description: "Baño de oro 18k con detalle de estrella cristalina."
+        tag: "Limited edition",
+        description: "18k gold-plated chain with a tiny crystal star detail."
       },
       {
         id: "2",
-        name: "Pulsera Minimal Gold",
+        name: "Minimal Gold Bracelet",
         price: 85,
         tag: "Best seller",
-        description: "Diseño delicado con cadena ajustable para uso diario."
+        description: "Delicate adjustable bracelet, perfect for everyday wear."
       },
       {
         id: "3",
-        name: "Aretes Perla Lunar",
+        name: "Moon Pearl Earrings",
         price: 95,
-        tag: "Clásico",
-        description: "Perlas sintéticas de alta calidad con acabado nacarado."
+        tag: "Classic",
+        description: "Soft-shine synthetic pearls with a timeless finish."
       },
       {
         id: "4",
-        name: "Anillo Eclipse",
+        name: "Eclipse Ring",
         price: 150,
-        tag: "Nueva colección",
-        description: "Anillo ajustable con circonias que reflejan la luz."
+        tag: "New in",
+        description: "Adjustable ring with sparkling stones that catch the light."
       },
       {
         id: "5",
-        name: "Choker Estrellas",
+        name: "Starlight Choker",
         price: 110,
-        tag: "Tendencia",
-        description: "Choker fino con pequeñas estrellas doradas."
+        tag: "Trending",
+        description: "Fine choker with small golden stars along the chain."
       },
       {
         id: "6",
-        name: "Set Brillo Nocturno",
+        name: "Night Glow Set",
         price: 210,
-        tag: "Set especial",
-        description: "Collar + aretes combinados para eventos de noche."
+        tag: "Special set",
+        description: "Matching necklace and earrings for evening outfits."
       }
     ];
 
@@ -571,10 +567,9 @@
     const emptyMessage   = document.getElementById("emptyMessage");
     const countBadge     = document.getElementById("countBadge");
 
-    // objeto para guardar favoritos: { id: { name, price } }
     const favorites = {};
 
-    // ---------- CREAR TARJETAS DINÁMICAMENTE ----------
+    // ---------- CREATE PRODUCT CARDS ----------
     productsData.forEach(product => {
       const card = document.createElement("article");
       card.className = "product-card";
@@ -593,7 +588,7 @@
           <div class="product-footer">
             <div class="price-block">
               <span class="price-main">Q ${product.price.toFixed(2)}</span>
-              <span class="price-sub">Incluye empaque de regalo</span>
+              <span class="price-sub">Gift-ready packaging included</span>
             </div>
             <button class="heart-btn" type="button">
               <span class="heart-icon heart-empty">♡</span>
@@ -606,7 +601,7 @@
       productsGrid.appendChild(card);
     });
 
-    // ---------- LÓGICA DE HEARTS ----------
+    // ---------- HEART LOGIC ----------
     productsGrid.addEventListener("click", (event) => {
       const heartBtn = event.target.closest(".heart-btn");
       if (!heartBtn) return;
@@ -621,20 +616,19 @@
       const isActive = Boolean(favorites[id]);
 
       if (isActive) {
-        // quitar de favoritos
+        // remove from favorites
         delete favorites[id];
         heartIcon.textContent = "♡";
         heartIcon.classList.remove("heart-filled", "heart-pop");
         heartIcon.classList.add("heart-empty");
         heartBtn.classList.remove("active");
       } else {
-        // añadir a favoritos
+        // add to favorites
         favorites[id] = { name, price };
         heartIcon.textContent = "♥";
         heartIcon.classList.remove("heart-empty");
-        // reiniciar animación para que pueda repetirse
         heartIcon.classList.remove("heart-pop");
-        void heartIcon.offsetWidth; // truco para reiniciar keyframe
+        void heartIcon.offsetWidth; // reset animation
         heartIcon.classList.add("heart-filled", "heart-pop");
         heartBtn.classList.add("active");
       }
@@ -642,7 +636,7 @@
       renderFavorites();
     });
 
-    // ---------- ACTUALIZAR SIDEBAR ----------
+    // ---------- UPDATE SIDEBAR ----------
     function renderFavorites() {
       favoritesList.innerHTML = "";
       const ids = Object.keys(favorites);
@@ -650,7 +644,7 @@
       if (ids.length === 0) {
         emptyMessage.style.display = "block";
         totalAmount.textContent = "Q 0.00";
-        countBadge.textContent = "0 seleccionados";
+        countBadge.textContent = "0 items selected";
         return;
       }
 
@@ -679,8 +673,10 @@
       });
 
       totalAmount.textContent = "Q " + total.toFixed(2);
-      countBadge.textContent = ids.length + (ids.length === 1 ? " seleccionado" : " seleccionados");
+      countBadge.textContent =
+        ids.length + (ids.length === 1 ? " item selected" : " items selected");
     }
   </script>
 </body>
 </html>
+
