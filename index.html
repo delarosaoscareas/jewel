@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tienda con Hearts</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #f4f4f8;
+      display: flex;
+      min-height: 100vh;
+      color: #222;
+    }
+
+    /* Contenedor principal: productos + sidebar */
+    .container {
+      display: flex;
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px auto;
+      gap: 20px;
+      padding: 0 15px;
+    }
+
+    /* Sección de productos */
+    .products {
+      flex: 3;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-image {
+      background: linear-gradient(135deg, #dce6ff, #ffe5f2);
+      border-radius: 10px;
+      height: 130px;
+      margin-bottom: 10px;
+    }
+
+    .product-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .product-price {
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 5px;
+    }
+
+    /* Botón heart */
+    .heart-btn {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 1.6rem;
+      line-height: 1;
+      transition: transform 0.15s ease;
+    }
+
+    .heart-btn span {
+      pointer-events: none; /* para que el clic cuente sobre el botón */
+    }
+
+    .heart-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .heart-empty {
+      color: #bbb;
+    }
+
+    .heart-filled {
+      color: #e63946;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      flex: 1.2;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      position: sticky;
+      top: 20px;
+      max-height: calc(100vh - 40px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar h2 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .favorites-list {
+      list-style: none;
+      margin-bottom: 15px;
+      overflow-y: auto;
+      flex: 1;
+      padding-right: 4px;
+    }
+
+    .favorites-list li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+
+    .favorites-list li span.name {
+      max-width: 70%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .total-line {
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .empty-msg {
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    @media (max-width: 800px) {
+      body {
+        display: block;
+      }
+      .container {
+        flex-direction: column;
+      }
+      .sidebar {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- LISTA DE PRODUCTOS -->
+    <section class="products" id="products">
+      <!-- Los productos se pueden escribir a mano o generar con JS -->
+      <div class="product-card" data-id="1" data-name="Collar de Estrella" data-price="120">
+        <div class="product-image"></div>
+        <div class="product-title">Collar de Estrella</div>
+        <div class="product-price">Q 120.00</div>
+        <div class="product-footer">
+          <span>Joyería</span>
+          <button class="heart-btn" aria-label="Marcar como favorito">
+            <span class="heart-icon heart-empty">♡</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card" data-id="2" data-name="Pulsera Minimalista" data-price="85">
+        <div class="product-image"></div>
+        <div class="product-title">Pulsera Minimalista</div>
+        <div class="product-price">Q 85.00</div>
+        <div class="product-footer">
+          <span>Joyería</span>
+          <button class="heart-btn" aria-label="Marcar como favorito">
+            <span class="heart-icon heart-empty">♡</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card" data-id="3" data-name="Aretes de Perla" data-price="95">
+        <div class="product-image"></div>
+        <div class="product-title">Aretes de Perla</div>
+        <div class="product-price">Q 95.00</div>
+        <div class="product-footer">
+          <span>Joyería</span>
+          <button class="heart-btn" aria-label="Marcar como favorito">
+            <span class="heart-icon heart-empty">♡</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card" data-id="4" data-name="Anillo Ajustable" data-price="150">
+        <div class="product-image"></div>
+        <div class="product-title">Anillo Ajustable</div>
+        <div class="product-price">Q 150.00</div>
+        <div class="product-footer">
+          <span>Joyería</span>
+          <button class="heart-btn" aria-label="Marcar como favorito">
+            <span class="heart-icon heart-empty">♡</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIDEBAR DE FAVORITOS -->
+    <aside class="sidebar">
+      <h2>Mis Hearts 💗</h2>
+      <p id="emptyMessage" class="empty-msg">Aún no has marcado ningún producto.</p>
+      <ul class="favorites-list" id="favoritesList"></ul>
+
+      <div class="total-line">
+        <span>Total:</span>
+        <span id="totalAmount">Q 0.00</span>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const productCards = document.querySelectorAll('.product-card');
+    const favoritesList = document.getElementById('favoritesList');
+    const totalAmount = document.getElementById('totalAmount');
+    const emptyMessage = document.getElementById('emptyMessage');
+
+    // Objeto para guardar favoritos: { id: { name, price } }
+    const favorites = {};
+
+    // Añadir eventos a cada botón de heart
+    productCards.forEach(card => {
+      const heartBtn = card.querySelector('.heart-btn');
+      const heartIcon = card.querySelector('.heart-icon');
+
+      heartBtn.addEventListener('click', () => {
+        const id = card.dataset.id;
+        const name = card.dataset.name;
+        const price = parseFloat(card.dataset.price);
+
+        // Si ya está en favoritos -> quitar
+        if (favorites[id]) {
+          delete favorites[id];
+          heartIcon.textContent = '♡';
+          heartIcon.classList.remove('heart-filled');
+          heartIcon.classList.add('heart-empty');
+        } else {
+          // Si no está -> añadir
+          favorites[id] = { name, price };
+          heartIcon.textContent = '♥';
+          heartIcon.classList.remove('heart-empty');
+          heartIcon.classList.add('heart-filled');
+        }
+
+        renderFavorites();
+      });
+    });
+
+    function renderFavorites() {
+      favoritesList.innerHTML = '';
+      const ids = Object.keys(favorites);
+
+      if (ids.length === 0) {
+        emptyMessage.style.display = 'block';
+        totalAmount.textContent = 'Q 0.00';
+        return;
+      } else {
+        emptyMessage.style.display = 'none';
+      }
+
+      let total = 0;
+
+      ids.forEach(id => {
+        const item = favorites[id];
+        total += item.price;
+
+        const li = document.createElement('li');
+
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = item.name;
+        nameSpan.classList.add('name');
+
+        const priceSpan = document.createElement('span');
+        priceSpan.textContent = 'Q ' + item.price.toFixed(2);
+
+        li.appendChild(nameSpan);
+        li.appendChild(priceSpan);
+        favoritesList.appendChild(li);
+      });
+
+      totalAmount.textContent = 'Q ' + total.toFixed(2);
+    }
+  </script>
+</body>
+</html>
