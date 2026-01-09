@@ -1,223 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Jewel Bloom</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8" />
+<title>Stardazed Jewelry</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <style>
-    :root {
-      --bg: #fdf2f8;
-      --card-bg: #ffffff;
-      --accent: #ec4899;
-      --heart: #ec4899;
-      --text-main: #1f2933;
-      --text-muted: #6b7280;
-      --border-soft: rgba(236,72,153,.18);
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --shadow-soft: 0 16px 40px rgba(148,27,126,.16);
-    }
+<style>
+:root{
+  --bg:#fdf2f8;
+  --card:#ffffff;
+  --accent:#ec4899;
+  --heart:#ec4899;
+  --text:#1f2933;
+  --muted:#6b7280;
+  --border:rgba(236,72,153,.25);
+  --r-lg:18px;
+  --r-md:12px;
+  --shadow:0 16px 40px rgba(148,27,126,.16);
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, sans-serif;
-    }
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}
 
-    body {
-      min-height: 100vh;
-      background: linear-gradient(to bottom, #fdf2f8, #f9fafb);
-      color: var(--text-main);
-    }
+body{
+  background:linear-gradient(#fdf2f8,#f9fafb);
+  min-height:100vh;
+  color:var(--text);
+}
 
-    header {
-      padding: 16px;
-      background: #fff;
-      border-bottom: 1px solid #fbcfe8;
-    }
+header{
+  padding:16px;
+  background:#fff;
+  border-bottom:1px solid #fbcfe8;
+}
 
-    header h1 {
-      font-size: 1.2rem;
-    }
+header h1{font-size:1.2rem}
 
-    main {
-      padding: 16px;
-      max-width: 1100px;
-      margin: auto;
-    }
+main{
+  padding:16px;
+  max-width:1100px;
+  margin:auto;
+}
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-    }
+.layout{
+  display:grid;
+  gap:16px;
+}
 
-    .product-card {
-      background: var(--card-bg);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-soft);
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+@media(min-width:840px){
+  .layout{grid-template-columns:2fr 1fr}
+}
 
-    .product-image {
-      height: 150px;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      position: relative;
-    }
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px;
+}
 
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  box-shadow:var(--shadow);
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
 
-    .product-chip {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.95);
-      font-size: 0.65rem;
-      border: 1px solid rgba(236,72,153,.35);
-    }
+.image{
+  height:150px;
+  border-radius:var(--r-md);
+  overflow:hidden;
+}
 
-    .product-title {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
+.image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
 
-    .product-description {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
+.title{
+  font-weight:600;
+  text-transform:capitalize;
+}
 
-    .product-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 6px;
-    }
+.footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-    .heart-btn {
-      border: none;
-      background: #fee2e2;
-      border-radius: 999px;
-      padding: 6px 12px;
-      cursor: pointer;
-      font-size: 1.2rem;
-      transition: transform .15s ease;
-    }
+.price{
+  font-weight:600;
+  color:#9d174d;
+}
 
-    .heart-btn.active {
-      background: #fda4af;
-      color: var(--heart);
-    }
+.heart-btn{
+  border:none;
+  background:#fee2e2;
+  border-radius:999px;
+  padding:6px 12px;
+  font-size:1.2rem;
+  cursor:pointer;
+  transition:transform .15s ease;
+}
 
-    .heart-btn:hover {
-      transform: scale(1.05);
-    }
-  </style>
+.heart-btn.active{
+  background:#fda4af;
+  color:var(--heart);
+}
+
+.sidebar{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  box-shadow:var(--shadow);
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.list{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  background:#fdf2f8;
+  border-radius:8px;
+  padding:6px;
+}
+
+.total{
+  display:flex;
+  justify-content:space-between;
+  border-top:1px dashed #f9a8d4;
+  padding-top:8px;
+  font-weight:600;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>Jewel Bloom — Demo</h1>
+  <h1>Stardazed Jewelry</h1>
 </header>
 
 <main>
-  <section class="products" id="productsGrid"></section>
+<div class="layout">
+  <section class="products" id="products"></section>
+
+  <aside class="sidebar">
+    <strong>My hearts</strong>
+    <ul class="list" id="favorites"></ul>
+    <div class="total">
+      <span>Total</span>
+      <span id="total">$0</span>
+    </div>
+  </aside>
+</div>
 </main>
 
 <script>
-  const productsData = [
-    {
-      id: "1",
-      name: "Aurora Necklace",
-      price: 120,
-      tag: "Limited",
-      description: "18k gold-plated chain with crystal detail.",
-      image: "images/1.jpg"
-    },
-    {
-      id: "2",
-      name: "Minimal Gold Bracelet",
-      price: 85,
-      tag: "Best seller",
-      description: "Delicate adjustable bracelet.",
-      image: "images/2.jpg"
-    },
-    {
-      id: "3",
-      name: "Moon Pearl Earrings",
-      price: 95,
-      tag: "Classic",
-      description: "Soft-shine pearl earrings.",
-      image: "images/3.jpg"
-    },
-    {
-      id: "4",
-      name: "Eclipse Ring",
-      price: 150,
-      tag: "New",
-      description: "Adjustable ring with stones.",
-      image: "images/4.jpg"
-    },
-    {
-      id: "5",
-      name: "Starlight Choker",
-      price: 110,
-      tag: "Trending",
-      description: "Fine choker with star details.",
-      image: "images/5.jpg"
-    },
-    {
-      id: "6",
-      name: "Night Glow Set",
-      price: 210,
-      tag: "Set",
-      description: "Necklace + earrings combo.",
-      image: "images/6.jpg"
-    }
-  ];
+const products = [
+  {id:1,name:"harmony",price:10,img:"images/1.png"},
+  {id:2,name:"day and night",price:10,img:"images/2.png"},
+  {id:3,name:"moonstone",price:22,img:"images/3.png"},
+  {id:4,name:"joy",price:10,img:"images/4.png"},
+  {id:5,name:"honey",price:10,img:"images/5.png"},
+  {id:6,name:"cosmos duo",price:12,img:"images/6.png"}
+];
 
-  const grid = document.getElementById("productsGrid");
+const selected = {};
+const productsEl = document.getElementById("products");
+const listEl = document.getElementById("favorites");
+const totalEl = document.getElementById("total");
 
-  productsData.forEach(p => {
-    const card = document.createElement("article");
-    card.className = "product-card";
+products.forEach(p=>{
+  const card=document.createElement("article");
+  card.className="card";
+  card.innerHTML=`
+    <div class="image">
+      <img src="${p.img}" alt="${p.name}">
+    </div>
+    <div class="title">${p.name}</div>
+    <div class="footer">
+      <span class="price">$${p.price}</span>
+      <button class="heart-btn" data-id="${p.id}">♡</button>
+    </div>
+  `;
+  productsEl.appendChild(card);
+});
 
-    card.innerHTML = `
-      <div class="product-image">
-        <img src="${p.image}" alt="${p.name}">
-        <span class="product-chip">${p.tag}</span>
-      </div>
-      <h2 class="product-title">${p.name}</h2>
-      <p class="product-description">${p.description}</p>
-      <div class="product-footer">
-        <strong>Q ${p.price.toFixed(2)}</strong>
-        <button class="heart-btn">♡</button>
-      </div>
-    `;
+productsEl.addEventListener("click",e=>{
+  const btn=e.target.closest(".heart-btn");
+  if(!btn) return;
 
-    grid.appendChild(card);
+  const id=btn.dataset.id;
+  const product=products.find(p=>p.id==id);
+
+  if(selected[id]){
+    delete selected[id];
+    btn.classList.remove("active");
+    btn.textContent="♡";
+  }else{
+    selected[id]=product;
+    btn.classList.add("active");
+    btn.textContent="♥";
+  }
+
+  render();
+});
+
+function render(){
+  listEl.innerHTML="";
+  let total=0;
+
+  Object.values(selected).forEach(p=>{
+    total+=p.price;
+    const li=document.createElement("li");
+    li.className="item";
+    li.innerHTML=`<span>${p.name}</span><span>$${p.price}</span>`;
+    listEl.appendChild(li);
   });
 
-  grid.addEventListener("click", e => {
-    const btn = e.target.closest(".heart-btn");
-    if (!btn) return;
-    btn.classList.toggle("active");
-    btn.textContent = btn.classList.contains("active") ? "♥" : "♡";
-  });
+  totalEl.textContent="$"+total;
+}
 </script>
 
 </body>
