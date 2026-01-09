@@ -7,10 +7,8 @@
 
   <style>
     :root {
-      --bg: #fdf2f8;
       --card-bg: #ffffff;
       --accent: #ec4899;
-      --heart: #ec4899;
       --text-main: #1f2933;
       --text-muted: #6b7280;
       --border-soft: rgba(236,72,153,.18);
@@ -27,8 +25,8 @@
     }
 
     body {
-      min-height: 100vh;
       background: linear-gradient(to bottom, #fdf2f8, #f9fafb);
+      min-height: 100vh;
       color: var(--text-main);
     }
 
@@ -36,10 +34,6 @@
       padding: 16px;
       background: #fff;
       border-bottom: 1px solid #fbcfe8;
-    }
-
-    header h1 {
-      font-size: 1.2rem;
     }
 
     main {
@@ -79,20 +73,10 @@
       display: block;
     }
 
-    .product-chip {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.95);
-      font-size: 0.65rem;
-      border: 1px solid rgba(236,72,153,.35);
-    }
-
     .product-title {
       font-weight: 600;
       font-size: 0.95rem;
+      text-transform: capitalize;
     }
 
     .product-description {
@@ -100,30 +84,19 @@
       color: var(--text-muted);
     }
 
-    .product-footer {
+    .price-box {
+      background: #fdf2f8;
+      border: 1px dashed #f9a8d4;
+      border-radius: var(--radius-md);
+      padding: 8px;
+      font-size: 0.8rem;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 6px;
+      flex-direction: column;
+      gap: 4px;
     }
 
-    .heart-btn {
-      border: none;
-      background: #fee2e2;
-      border-radius: 999px;
-      padding: 6px 12px;
-      cursor: pointer;
-      font-size: 1.2rem;
-      transition: transform .15s ease;
-    }
-
-    .heart-btn.active {
-      background: #fda4af;
-      color: var(--heart);
-    }
-
-    .heart-btn:hover {
-      transform: scale(1.05);
+    .price-line strong {
+      color: #9d174d;
     }
   </style>
 </head>
@@ -131,7 +104,7 @@
 <body>
 
 <header>
-  <h1>Jewel Bloom — Demo</h1>
+  <h1>Jewel Bloom — Price List</h1>
 </header>
 
 <main>
@@ -141,52 +114,64 @@
 <script>
   const productsData = [
     {
-      id: "1",
-      name: "Aurora Necklace",
-      price: 120,
-      tag: "Limited",
-      description: "18k gold-plated chain with crystal detail.",
-      image: "images/1.png"
+      id: 1,
+      name: "harmony",
+      image: "images/1.png",
+      description: "Delicate everyday piece.",
+      prices: [
+        "Without packaging: $8 each",
+        "With packaging: $10"
+      ]
     },
     {
-      id: "2",
-      name: "Minimal Gold Bracelet",
-      price: 85,
-      tag: "Best seller",
-      description: "Delicate adjustable bracelet.",
-      image: "images/2.png"
+      id: 2,
+      name: "day and night",
+      image: "images/2.png",
+      description: "Minimal and versatile.",
+      prices: [
+        "Without packaging: $8 each",
+        "With packaging: $10"
+      ]
     },
     {
-      id: "3",
-      name: "Moon Pearl Earrings",
-      price: 95,
-      tag: "Classic",
-      description: "Soft-shine pearl earrings.",
-      image: "images/3.png"
+      id: 3,
+      name: "moonstone",
+      image: "images/3.png",
+      description: "Necklace + bracelet set.",
+      prices: [
+        "Without packaging: $20 (necklace $12 + bracelet $8)",
+        "With packaging: $22 both / $14 necklace / $10 bracelet"
+      ]
     },
     {
-      id: "4",
-      name: "Eclipse Ring",
-      price: 150,
-      tag: "New",
-      description: "Adjustable ring with stones.",
-      image: "images/4.png"
+      id: 4,
+      name: "joy",
+      image: "images/4.png",
+      description: "Real pearls.",
+      prices: [
+        "Without packaging: $15",
+        "With packaging: $10"
+      ]
     },
     {
-      id: "5",
-      name: "Starlight Choker",
-      price: 110,
-      tag: "Trending",
-      description: "Fine choker with star details.",
-      image: "images/5.png"
+      id: 5,
+      name: "honey",
+      image: "images/5.png",
+      description: "Sweet and minimal.",
+      prices: [
+        "Without packaging: $12",
+        "With packaging: $10"
+      ]
     },
     {
-      id: "6",
-      name: "Night Glow Set",
-      price: 210,
-      tag: "Set",
-      description: "Necklace + earrings combo.",
-      image: "images/6.png"
+      id: 6,
+      name: "cosmos duo",
+      image: "images/6.png",
+      description: "Real pearls – duo set.",
+      prices: [
+        "Without packaging: $10 each",
+        "With packaging: $12"
+      ]
     }
   ];
 
@@ -199,24 +184,15 @@
     card.innerHTML = `
       <div class="product-image">
         <img src="${p.image}" alt="${p.name}">
-        <span class="product-chip">${p.tag}</span>
       </div>
       <h2 class="product-title">${p.name}</h2>
       <p class="product-description">${p.description}</p>
-      <div class="product-footer">
-        <strong>Q ${p.price.toFixed(2)}</strong>
-        <button class="heart-btn">♡</button>
+      <div class="price-box">
+        ${p.prices.map(line => `<div class="price-line"><strong>•</strong> ${line}</div>`).join("")}
       </div>
     `;
 
     grid.appendChild(card);
-  });
-
-  grid.addEventListener("click", e => {
-    const btn = e.target.closest(".heart-btn");
-    if (!btn) return;
-    btn.classList.toggle("active");
-    btn.textContent = btn.classList.contains("active") ? "♥" : "♡";
   });
 </script>
 
